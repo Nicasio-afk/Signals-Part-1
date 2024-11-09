@@ -9,7 +9,8 @@ void child_process() {
     srand(time(NULL) ^ (getpid()<<16));
 
     int num_iterations = rand() % 31; // Random number of iterations, max 30
-    for (int i = 0; i < num_iterations; i++) {
+    int i; // Declare loop variable outside the loop
+    for (i = 0; i < num_iterations; i++) {
         printf("Child Pid: %d is going to sleep!\n", getpid());
         
         // Sleep for a random amount of time, max 10 seconds
@@ -46,7 +47,8 @@ int main() {
     // Parent process waits for both children to complete
     int status;
     pid_t completed_pid;
-    for (int i = 0; i < 2; i++) {
+    int i; // Declare loop variable outside the loop
+    for (i = 0; i < 2; i++) {
         completed_pid = wait(&status);
         printf("Child Pid: %d has completed\n", completed_pid);
     }
